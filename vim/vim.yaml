@@ -1,0 +1,11 @@
+name: vim
+version: 9.0
+source: https://github.com/vim/vim/archive/refs/tags/v{{version}}.tar.gz
+sha256: ''  # put an actual sha256 here after fetching
+dependencies:
+  - ncurses
+  - python
+build:
+  - ./configure --prefix=/usr
+  - make -j$(nproc || echo 1)
+  - make install
