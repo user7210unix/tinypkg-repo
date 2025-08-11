@@ -1,11 +1,13 @@
 name: vim
-version: 9.0
-source: https://github.com/vim/vim/archive/refs/tags/v{{version}}.tar.gz
-sha256: ''  # put an actual sha256 here after fetching
+version: 9.1.1623
+source: https://github.com/vim/vim/archive/refs/tags/v9.1.1623.tar.gz
+sha256: '315721807e467726cf1d6848f09c9b37216d33b7b37ec2b70b8a00fa080948be'
 dependencies:
   - ncurses
-  - python
 build:
-  - ./configure --prefix=/usr
+  - ./configure --prefix=/usr        \
+            --with-features=huge \
+            --enable-gui=gtk3    \
+            --with-tlib=ncursesw
   - make -j$(nproc || echo 1)
   - make install
